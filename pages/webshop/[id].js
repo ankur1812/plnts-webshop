@@ -83,7 +83,7 @@ export default function Car ( {product} ) {
             PLNTS Webshop: Buy Gift
             {/* {product.title} */}
             </div>
-        <div className="product-details m-10 flex">
+        <div className="product-details m-10 flex flex-wrap">
             {/* {JSON.stringify(product)} */}
             <img className="product-img-full float-left" src={product.image}/>
             <div className="product-info w-1/2 m-l-10">

@@ -20,7 +20,8 @@
     
 }
 .product-img-full {
-    width: 30%
+    /* width: 30% */
+    height: 240px
 }
 
 .product-info {

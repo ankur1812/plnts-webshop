@@ -83,7 +83,7 @@ export default function Basket( ) {
                             You haven't added any items to the cart yet. Check our <Link className='font-bold' href="webshop"><button>Webshop</button></Link> to select items!
                         </div>)}
                         {mycart.map( p => 
-                            <div key={p.id} className="cart-list-item flex h-1/2 p-2 border border-black m-4 w-1/2" styles={{width: '100px'}}>
+                            <div key={p.id} className="cart-list-item flex flex-wrap h-1/2 p-2 border border-black m-4 w-1/2" styles={{width: '100px'}}>
                                 <Link href={`/webshop/${p.id}`} className="float-left">
                                     <img className="product-img w-12 mx-2" src={p.image}/>
                                 </Link>

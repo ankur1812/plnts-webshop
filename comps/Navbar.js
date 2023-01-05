@@ -16,7 +16,7 @@ const Navbar = () => {
         <div className='float-right flex'>
             <Link href="/basket" className="mx-6 my-4">
                 <HiShoppingCart className='mx-2'/>
-                <span>My Cart</span>
+                <span>Cart</span>
 
             </Link>
         </div>
