@@ -3,9 +3,11 @@ import Footer from './Footer'
 
 const Layout = ( {children} ) => {
     return  (
-        <div className="">
+        <div>
             <Navbar/>
-              {children}
+                <div id="plnts-contents" className='my-20'>
+                    {children}
+                </div>
             <Footer/>
         </div>
     )

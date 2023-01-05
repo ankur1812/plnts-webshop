@@ -4,9 +4,16 @@
 
 .product-card {
     /* margin: 2px; */
-    padding: 2px;
-    border: 1px solid red;
-    border-radius: ;
+    width: 240px;
+    height: 280px;
+    padding: 10px;
+    text-align: center;
+    /* border: 1px solid red; */
+
+    box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+}
+.product-card .img-container {
+    height: 180px;
 }
 
 .product-details {
@@ -30,14 +37,14 @@
     height: 100vh;
     background-color: black;
     opacity: 0.5;
-    z-index: 10000;
+    z-index: 999998;
 }
 
 .modal-div {
     position: fixed;
-    z-index: 10001;
+    z-index: 999999;
     left: 15%;
-    top: 50px;
+    top: 130px;
     width: 70%;
     background-color: white;
     padding: 20px;
@@ -73,3 +80,53 @@ form div {
 }
 
 label:after {content: '*';}
+
+nav {
+    position: fixed;
+    z-index: 99999;
+    top: 0;
+    padding: 0 20px;
+    width: 100vw;
+    background: white;
+    border-bottom: 1.5px solid gray
+}
+
+#plnts-contents {
+    margin: 80px 25px 0 25px;
+    min-height: 700px;
+    padding-bottom: 100px;
+}
+
+#plnts-footer {
+    
+    border-top: 2px solid gray;
+    text-align: center;
+    min-height: 80px;
+    margin: 2px;
+    padding: 30px 0 0 0 ;
+    /* background-color: ghostwhite; */
+}
+
+#cart-list .product-title {
+    min-width: 250px;
+}
+
+.cart-list-item {
+    width: 60%;
+    position: relative;
+    min-height: 80px;
+}
+
+.cart-list-item button {
+    position: absolute;
+    right: 10px;
+}
+
+#cart-list .product-title {
+    max-width: 60%
+}
+
+#home-banner {
+    /* height: 280px */
+    /* width: 100vw; */
+}

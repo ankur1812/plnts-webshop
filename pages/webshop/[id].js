@@ -2,6 +2,10 @@ import {useRouter} from 'next/router'
 import React, { useState, useEffect, useContext } from 'react';
 import {useCookies} from 'react-cookie'
 import Link from 'next/link'
+import { BsGrid3X3GapFill } from 'react-icons/bs';
+import { HiShoppingCart } from 'react-icons/hi';
+import { HiGift} from 'react-icons/hi';
+
 
 
 // import { Context } from "../../context";
@@ -71,7 +75,11 @@ export default function Car ( {product} ) {
     }
 
     return <div>
-        <div className='text-4xl'> {product.title}</div>
+        <div className='text-4xl flex'>
+            <HiGift/> 
+            PLNTS Webshop: Buy Gift
+            {/* {product.title} */}
+            </div>
         <div className="product-details m-10 flex">
             {/* {JSON.stringify(product)} */}
             <img className="product-img-full float-left" src={product.image}/>
@@ -87,8 +95,12 @@ export default function Car ( {product} ) {
                     {/* <button disabled="true" className="opacity-50 cursor-not-allowed text-white bg-yellow-500 p-2 p-l-4 p-r-4 rounded-3xl"> Added to Basket</button> */}
                     <div className='my-4 text-green-500'> Product added to you cart! </div>
                     <Link href="/basket">
-                        <button className="text-white bg-yellow-700 p-2 p-l-4 p-r-4 rounded-3xl"> Proceed to Checkout</button>
+                        <button className="text-white bg-yellow-500 p-2 p-l-4 p-r-4 rounded-3xl"> Proceed to Checkout</button>
                     </Link>
+
+                    <div className="my-4">
+                        Or check out the <Link className='font-bold' href="/webshop"><button>Webshop</button></Link> to select more items!
+                    </div>
                     </>
                 ) }
                 {/* <button className="text-white bg-yellow-500 p-2 p-l-4 p-r-4 rounded-3xl" onClick={ () => {add(); }}> Add to Basket</button> */}

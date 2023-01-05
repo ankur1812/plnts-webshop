@@ -1,5 +1,5 @@
 const Footer = () => {
-    return <div>Footer</div>
+    return <div id="plnts-footer">© 2023 - PLNTS.com</div>
 }
 
 export default Footer;
