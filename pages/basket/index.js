@@ -12,6 +12,7 @@ export default function Basket( ) {
     const [mycart, syncCookieWithApp] = useState([]);
     const [totalprice, setTotalPrice] = useState(-1);
     const [showModal, toggleModdle] = useState(false);
+    const [formValues, updateFormValues] = useState({});
     const [successMsg, updateSuccessMsg] = useState("");
 
      
@@ -40,6 +41,14 @@ export default function Basket( ) {
         updateSuccessMsg("success")
         // setTotalPrice(0)
     }
+
+    const changeHandler = (e) => {
+        let newFormValues = {...formValues}
+        console.log(e.target.id  + ' ' + e.target.value);
+        newFormValues[e.target.id] = e.target.value;
+        console.log(newFormValues)
+        updateFormValues({...newFormValues})
+    }
     
     
     return <div>
@@ -47,14 +56,14 @@ export default function Basket( ) {
             <Modal title="Place Order" onClose={()=>toggleModdle(false)}>
                 <div className='text-2xl'> Enter Delivery Details</div>
                 <form className='flex flex-wrap justify-between'>
-                    <div><label>First Name</label><input placeholder='First Name'/></div>
-                    <div><label>Last Name</label><input placeholder='Last Name'/></div>
-                    <div><label>Phone</label><input type='number' placeholder='Phone'/></div>
-                    <div><label>House Number</label><input placeholder='Address'/></div>
-                    <div><label>Street</label><input placeholder='Street'/></div>
-                    <div><label>City</label><input placeholder='City'/></div>
-                    <div><label>PIN</label><input placeholder='Pincode'/></div>
-                    <div><label>Country</label><input placeholder='Country'/></div>
+                    <div><label>First Name</label><input id="fname" onChange={changeHandler} placeholder='First Name'/></div>
+                    <div><label>Last Name</label><input id="lname" onChange={changeHandler}  placeholder='Last Name'/></div>
+                    <div><label>Phone</label><input type='number' id="phone" onChange={changeHandler}  placeholder='Phone'/></div>
+                    <div><label>House Number</label><input id="house" onChange={changeHandler}  placeholder='Address'/></div>
+                    <div><label>Street</label><input id="street" onChange={changeHandler}  placeholder='Street'/></div>
+                    <div><label>City</label><input id="city" onChange={changeHandler}  placeholder='City'/></div>
+                    <div><label>PIN</label><input id="pin" onChange={changeHandler}  placeholder='Pincode'/></div>
+                    <div><label>Country</label><input id="country" onChange={changeHandler}  placeholder='Country'/></div>
                 </form>
                 {successMsg != "success" && <button className="text-white bg-yellow-500 p-2 p-l-4 p-r-4 my-4 rounded-3xl" onClick={()=> placeOrder()}> Place Order</button>}
                 {/* <button className="text-white bg-yellow-500 p-2 p-l-4 p-r-4 my-4 rounded-3xl" onClick={()=> placeOrder()}> Place Order</button> */}
@@ -89,7 +98,17 @@ export default function Basket( ) {
                         )}
                     </div>
                     {mycart.length > 0 && (<>
-                        <div>Order Price:  <span className="font-bold">€ {totalprice}</span></div>
+                        {successMsg == "success" && <div className='shipping-address'>
+                            <div className='font-bold text-xl'>Shipping Address</div>
+                            <div className='uppercase'>
+                                <div className='uppercase'> {formValues.fname} {formValues.lname} </div>
+                                <div> {formValues.phone} </div>
+                                <div> {formValues.street} {formValues.house} </div>
+                                <div> {formValues.city} {formValues.pin} </div>
+                                <div> {formValues.country} </div>
+                            </div>
+                        </div>}
+                        <div className="font-bold my-4">Order Price:  <span className="font-bold">€ {totalprice}</span></div>
                         {successMsg != "success" && 
                             <button className="text-white bg-yellow-500 p-2 p-l-4 p-r-4 my-4 rounded-3xl" onClick={ () => {toggleModdle(true); }}> Place Order</button>
                         }
