@@ -4,7 +4,7 @@ import {useCookies} from 'react-cookie'
 import Link from 'next/link'
 import { BsGrid3X3GapFill } from 'react-icons/bs';
 import { HiShoppingCart } from 'react-icons/hi';
-import { HiGift} from 'react-icons/hi';
+import { HiGift, HiStar} from 'react-icons/hi';
 
 
 
@@ -90,6 +90,15 @@ export default function Car ( {product} ) {
                 <div className="product-category uppercase">{product.category}</div>
                 <span className="product-title text-2xl">{product.title}</span>
                 <div className="product-price text-2xl"> € {product.price}</div>
+                
+                {product.rating?.rate && (
+                    <div className="product-descr m-t-2 flex">
+                        {product.rating.rate} &nbsp;
+                        <HiStar className='m-l-4 m-t-8'/> 
+                        &nbsp; from {product.rating.count} users.
+                    </div>
+                ) }
+                
                 <div className="product-descr m-t-2">{product.description}</div>
                 { qtyAdded ==0 ? (
                     <button className="text-white bg-yellow-500 p-2 p-l-4 p-r-4 my-4 rounded-3xl" onClick={ () => {add(); }}> Add to Basket</button>

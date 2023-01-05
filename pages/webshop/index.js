@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { BsGrid3X3GapFill } from 'react-icons/bs';
+import { HiStar } from 'react-icons/hi';
 
 export default function CarsList( {photos} ) {
     return <div>
@@ -12,6 +13,16 @@ export default function CarsList( {photos} ) {
                 <div key={p.id} className="product-card h-1/2 p-4 border border-black m-4 w-1/4" styles={{
                     width: '100px'
                 }}>
+                    <div className='product-rating flex float-right'>
+                        {p.rating?.rate && (
+                            <span className="product-rating flex">
+                                {p.rating.rate} 
+                                {/* &nbsp; */}
+                                <HiStar/> 
+                            </span>
+                        ) } 
+                    </div>
+
                     <Link href={`/webshop/${p.id}`}>
                         <>
                     <div className="img-container">
@@ -22,6 +33,7 @@ export default function CarsList( {photos} ) {
                     <div className='flex flex-col m-w-58'>
                         <div title={p.title} className="product-title">{p.title.substring(0, 60)}</div>
                         <div className="product-price font-bold">$ {p.price}</div>
+
                         {/* <div className="product-price">{p.description}</div> */}
                     </div>
                         </>
