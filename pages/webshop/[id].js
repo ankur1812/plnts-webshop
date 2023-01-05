@@ -1,25 +1,70 @@
 import {useRouter} from 'next/router'
+import React, { useState } from 'react';
+
 
 export default function Car ( {product} ) {
     const router = useRouter();
     const { id } = router.query;
-    debugger;
+
+    const [count, setCount] = useState(0);
+  
+    // debugger;
+    
+    // let basket = localStorage.getItem('basket') || [];
+    // let basket = localStorage.getItem('basket') || [];
+    // addedToCart = isAdded(basket, product.id)
+
+    const isAdded = (cart = [], id) =>{
+        return cart.some( p => p.id == id);
+    }
+
+    const add = ()=>{
+        // alert('hello')
+        setCount(count+1);
+        debugger;
+        return 0;
+        let basket = localStorage.getItem('basket');
+        basket = !!basket? JSON.parse(basket) : [];
+        if (!isAdded(basket, product.id)){
+            basket.push(product)
+            localStorage.getItem('basket', JSON.stringify(basket))
+            console.log('Added to basket')
+        }
+        else console.log('Already Added')
+    }
 
     return <div>
-        <h2> {product.title} </h2>
-        <div className="product details">
+        <div className='text-4xl'> {product.title} {count}</div>
+        <div className="product-details m-10 flex">
             {/* {JSON.stringify(product)} */}
-            <div className="product-card">
-                <img height="80" className="product-img-full" src={product.image}/>
-                <div className="product-title">{product.title}</div>
-                <div className="product-price">{product.price}</div>
-                <div className="product-price">{product.description}</div>
+            <img className="product-img-full float-left" src={product.image}/>
+            <div className="product-info w-1/2 m-l-10">
+                <div className="product-category uppercase">{product.category}</div>
+                <span className="product-title text-2xl">{product.title}</span>
+                <div className="product-price text-2xl"> € {product.price}</div>
+                <div className="product-descr m-t-2">{product.description}</div>
             </div>
-
+            {/* <button onClick={()=>{alert('add')}}> Add to Basket</button> */}
+            <button onClick={ () => {add(); }}> Add to Basket</button>
         </div>
     </div>
 
 }
+
+const sample_product  =   {
+    "id": 1,
+    "title": "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
+    "price": 109.95,
+    "description": "Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday",
+    "category": "men's clothing",
+    "image": "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
+    "rating": {
+      "rate": 3.9,
+      "count": 120
+    }
+  }
+
+
 
 export async function getServerSideProps22(context) {
     return {

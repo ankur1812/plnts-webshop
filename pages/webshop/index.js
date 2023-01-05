@@ -1,15 +1,21 @@
 import Link from 'next/link'
 export default function CarsList( {photos} ) {
-    debugger;
+    // debugger;
     return <div>
-        <h1>PLNTS Webshop</h1>
-        <div id="list">
+        <h1 className='text-4xl text-green-400'>PLNTS Webshop</h1>
+        <div id="list" className='flex flex-wrap'>
             {photos.map( p => 
-                <div key={p.id} className="product-card">
-                    <Link href={`/webshop/${p.id}`}><img height="48" className="product-img" src={p.image}/></Link>
-                    <div className="product-title">{p.title}</div>
-                    <div className="product-price">{p.price}</div>
-                    <div className="product-price">{p.description}</div>
+                <div key={p.id} className="product-card h-1/2 p-4 border border-black m-4 w-1/4" styles={{
+                    width: '100px'
+                }}>
+                    <Link href={`/webshop/${p.id}`}>
+                        <img className="product-img w-32" src={p.image}/>
+                        </Link>
+                    <div className='flex flex-col m-w-58'>
+                        <div className="product-title">{p.title}</div>
+                        <div className="product-price">{p.price}</div>
+                        {/* <div className="product-price">{p.description}</div> */}
+                    </div>
                 </div>
             )}
         </div>
