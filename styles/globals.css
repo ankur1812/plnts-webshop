@@ -22,3 +22,54 @@
 .product-descr {
     margin-top: 20px;
 }
+
+.modal-backdrop {
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: black;
+    opacity: 0.5;
+    z-index: 10000;
+}
+
+.modal-div {
+    position: fixed;
+    z-index: 10001;
+    left: 15%;
+    top: 50px;
+    width: 70%;
+    background-color: white;
+    padding: 20px;
+}
+
+.modal-header {
+    text-align: center;
+    font-size: 1.5rem;
+    margin-bottom: 10px
+}
+
+label {
+    display: block;
+    font-weight: bold;
+
+}
+input, input:focus {
+    border: none;
+    padding: 2px;
+    border: 1px solid gray;
+    width: 80%;
+    border-radius: 17px;
+    padding: 7px !important;
+}
+
+input:focus {
+    border: 1.5px solid gray;
+}
+
+form div {
+    width: 50%;
+    margin: 5px 0 0 0;
+}
+
+label:after {content: '*';}
