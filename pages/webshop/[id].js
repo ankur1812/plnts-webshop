@@ -30,19 +30,22 @@ export default function Car ( {product} ) {
     const [qtyAdded, setQuantityAdded] = useState(-1);
     // useEffect(() => setNextJsCookie(cookies.mycart), [])
 
-    const syncCookiesData = () => {
-        useEffect( () => {
+    useEffect( () => {
+        if(qtyAdded == -1){
             if (Array.isArray(cookies.mycart) ) {
                 let count = cookies.mycart.reduce( (count, p) => count+ (p.id == product.id ? 1 : 0), 0)
                 setNextJsCookie(cookies.mycart)
                 setQuantityAdded(count)
-                // setTotalPrice(sum_price)
                 console.log('mycart', cookies.mycart)
                 console.log('qty', count)
             }
-        })
-    }
-    syncCookiesData()
+            else {
+                console.log('Initializing cart')
+                setNextJsCookie([])
+                setQuantityAdded(0)
+            }
+        }
+    })
 
   
     
