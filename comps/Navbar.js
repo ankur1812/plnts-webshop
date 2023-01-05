@@ -5,6 +5,7 @@ const Navbar = () => {
         <div> Navigate our webshop</div>
         <Link href="/">Home</Link>
         <Link href="/webshop">Store</Link>
+        <Link href="/basket">Basket</Link>
         {/* <Link href="/">About</Link> */}
         {/* <Link href="/">Contact Us</Link> */}
     </nav>

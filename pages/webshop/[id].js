@@ -1,40 +1,77 @@
 import {useRouter} from 'next/router'
-import React, { useState } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import {useCookies} from 'react-cookie'
+import Link from 'next/link'
+
+
+// import { Context } from "../../context";
 
 
 export default function Car ( {product} ) {
+    // const { state, dispatch } = useContext(Context);
+    
     const router = useRouter();
     const { id } = router.query;
 
     const [count, setCount] = useState(0);
-  
-    // debugger;
-    
-    // let basket = localStorage.getItem('basket') || [];
-    // let basket = localStorage.getItem('basket') || [];
-    // addedToCart = isAdded(basket, product.id)
+    const [cookies, setCookie, removeCookie] = useCookies(['cookie-name']);
 
-    const isAdded = (cart = [], id) =>{
-        return cart.some( p => p.id == id);
+    // console.log('cookies')
+    // console.log('removing cookies' , cookies)
+    // // removeCookie('mycart')
+    // setCookie('mycart', [])
+    // console.log('removed cookies' , cookies)
+
+    const [mycart, setNextJsCookie] = useState([]);
+    const [qtyAdded, setQuantityAdded] = useState(-1);
+    // useEffect(() => setNextJsCookie(cookies.mycart), [])
+
+    const syncCookiesData = () => {
+        useEffect( () => {
+            if (Array.isArray(cookies.mycart) ) {
+                let count = cookies.mycart.reduce( (count, p) => count+ (p.id == product.id ? 1 : 0), 0)
+                setNextJsCookie(cookies.mycart)
+                setQuantityAdded(count)
+                // setTotalPrice(sum_price)
+                console.log('mycart', cookies.mycart)
+                console.log('qty', count)
+            }
+        })
     }
+    syncCookiesData()
+
+  
+    
+    let basket = cookies.mycart;
+    basket = basket ? (basket) : []
+    // try {
+    // basket = basket ? JSON.parse(basket) : []
+    // }
+    // catch (error) {
+    //     basket = []
+    // }
+
 
     const add = ()=>{
-        // alert('hello')
-        setCount(count+1);
-        debugger;
-        return 0;
-        let basket = localStorage.getItem('basket');
-        basket = !!basket? JSON.parse(basket) : [];
-        if (!isAdded(basket, product.id)){
-            basket.push(product)
-            localStorage.getItem('basket', JSON.stringify(basket))
+        // if (true || !isAdded(basket, product.id)) {
+        if (true && qtyAdded == 0 ) {
+            let toAdd = Object.assign({}, product)
+            delete toAdd.description;
+            delete toAdd.category;
+            delete toAdd.rating;
+            // delete toAdd.image;
+            basket.push(toAdd)
+            console.log('update basket :' + JSON.stringify(basket))
+            setCookie('mycart', basket)
             console.log('Added to basket')
+            setQuantityAdded(qtyAdded + 1)
+            
         }
         else console.log('Already Added')
     }
 
     return <div>
-        <div className='text-4xl'> {product.title} {count}</div>
+        <div className='text-4xl'> {product.title}</div>
         <div className="product-details m-10 flex">
             {/* {JSON.stringify(product)} */}
             <img className="product-img-full float-left" src={product.image}/>
@@ -43,9 +80,20 @@ export default function Car ( {product} ) {
                 <span className="product-title text-2xl">{product.title}</span>
                 <div className="product-price text-2xl"> € {product.price}</div>
                 <div className="product-descr m-t-2">{product.description}</div>
+                { qtyAdded ==0 ? (
+                    <button className="text-white bg-yellow-500 p-2 p-l-4 p-r-4 my-4 rounded-3xl" onClick={ () => {add(); }}> Add to Basket</button>
+                ) : (
+                    <>
+                    {/* <button disabled="true" className="opacity-50 cursor-not-allowed text-white bg-yellow-500 p-2 p-l-4 p-r-4 rounded-3xl"> Added to Basket</button> */}
+                    <div className='my-4 text-green-500'> Product added to you cart! </div>
+                    <Link href="/basket">
+                        <button className="text-white bg-yellow-700 p-2 p-l-4 p-r-4 rounded-3xl"> Proceed to Checkout</button>
+                    </Link>
+                    </>
+                ) }
+                {/* <button className="text-white bg-yellow-500 p-2 p-l-4 p-r-4 rounded-3xl" onClick={ () => {add(); }}> Add to Basket</button> */}
+                {/* <div> Total added is {qtyAdded} </div> */}
             </div>
-            {/* <button onClick={()=>{alert('add')}}> Add to Basket</button> */}
-            <button onClick={ () => {add(); }}> Add to Basket</button>
         </div>
     </div>
 
