@@ -83,17 +83,21 @@ export default function Basket( ) {
                             You haven't added any items to the cart yet. Check our <Link className='font-bold' href="webshop"><button>Webshop</button></Link> to select items!
                         </div>)}
                         {mycart.map( p => 
-                            <div key={p.id} className="cart-list-item flex flex-wrap h-1/2 p-2 border border-black m-4 w-1/2" styles={{width: '100px'}}>
+                            <div key={p.id} className="cart-list-item flex flex-wrap h-1/2 p-2xxxx border border-black m-4xxxx w-1/2" styles={{width: '100px'}}>
                                 <Link href={`/webshop/${p.id}`} className="float-left">
                                     <img className="product-img w-12 mx-2" src={p.image}/>
                                 </Link>
-                                <div className="product-title mx-6 ">{p.title}</div>
-                                <div className="product-price float-right font-bold">€{p.price}</div>
-                                {successMsg != "success" && 
-                                    <button className="text-white bg-red-500 p-2 p-l-4 p-r-4 rounded-3xl" onClick={ () => {remove(p.id); }}> Remove</button> 
-                                }
-                                {/* <button className="text-white bg-yellow-500 p-2 p-l-4 p-r-4 my-4 rounded-3xl" onClick={ () => {remove(p.id); }}> Remove</button> */}
-                                {/* </div> */}
+                                <div className="product-title ">{p.title}</div>
+                                <div className='item-end-col bg-white'>
+                                    <div className="product-price font-bold">€{p.price}</div>
+                                    {successMsg != "success" && 
+                                        <div>
+                                            <button className="text-white bg-red-500 p-2 p-l-4 p-r-4 rounded-3xl" onClick={ () => {remove(p.id); }}> Remove</button> 
+                                        </div>
+                                    }
+                                    {/* <button className="text-white bg-yellow-500 p-2 p-l-4 p-r-4 my-4 rounded-3xl" onClick={ () => {remove(p.id); }}> Remove</button> */}
+                                    {/* </div> */}
+                                </div>
                             </div>
                         )}
                     </div>

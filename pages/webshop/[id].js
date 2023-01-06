@@ -80,13 +80,13 @@ export default function Car ( {product} ) {
     return <div>
         <div className='text-4xl flex'>
             <HiGift/> 
-            PLNTS Webshop: Buy Gift
+            Webshop: Buy Gift
             {/* {product.title} */}
             </div>
         <div className="product-details m-10 flex flex-wrap">
             {/* {JSON.stringify(product)} */}
             <img className="product-img-full float-left" src={product.image}/>
-            <div className="product-info w-1/2 m-l-10">
+            <div className="product-info m-l-10">
                 <div className="product-category uppercase">{product.category}</div>
                 <span className="product-title text-2xl">{product.title}</span>
                 <div className="product-price text-2xl"> € {product.price}</div>

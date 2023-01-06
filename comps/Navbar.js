@@ -11,7 +11,7 @@ const Navbar = () => {
                 <img className="w-12 float-left" src={logo}/>
                 <div className='float-left my-4'>PLNTS</div>
             </Link>
-            <Link href="/webshop" className='mx-6 my-4'><BsGrid3X3GapFill className='mx-2'/> Store</Link>
+            <Link href="/webshop" className='mx-6 my-4'><BsGrid3X3GapFill className='mx-2'/> Shop</Link>
         </div>
         <div className='float-right flex'>
             <Link href="/basket" className="mx-6 my-4">
